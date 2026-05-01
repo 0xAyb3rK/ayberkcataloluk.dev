@@ -1,0 +1,100 @@
+baseURL: 'https://ayberkcataloluk.dev'
+languageCode: 'en-En'
+theme: "hello-4s3ti"
+title: 'Ayberk Çataloluk | 0xAyb3rK'
+copyright: "All Rights Reserved"
+IsMultiLingual: true
+defaultContentLanguage: en
+
+languages:
+  en:
+    weight: 1
+    languageName: "English"
+    menu: 
+      main:
+        - identifier: "posts"
+          name: "Posts"
+          url: "/posts" 
+          weight: 1
+        - identifier: "projects"
+          name: "Projects"
+          url: "/projects"
+          weight: 3
+        - identifier: "whoami"
+          name: "Whoami"
+          url: "/whoami"
+          weight: 4
+        - identifier: "terminal"
+          name: "Terminal"
+          url: "/terminal"
+          weight: 5
+  tr:
+    weight: 2
+    languageName: "Türkçe"
+    menu: 
+      main:
+        - identifier: "posts"
+          name: "Posts"
+          url: "/posts" 
+          weight: 1
+        - identifier: "projects"
+          name: "Projects"
+          url: "/projects"
+          weight: 3
+        - identifier: "whoami"
+          name: "Whoami"
+          url: "/whoami"
+          weight: 4
+        - identifier: "terminal"
+          name: "Terminal"
+          url: "/terminal"
+          weight: 5
+
+params:
+  customCSS: ["/css/custom.css"]
+  version: "dev"
+  author: 
+    name: "0xAyb3rK"
+  defaultTheme: "dark"
+  EnableThemeToggle: false
+  EnableSharingButtons: true
+  EnableGlobalLanguageMenu: true
+  backgroundEffects: true
+  showPosts: true
+  showSummary: true
+  tags: true
+  paginate: 5
+  ReadMoreText: true
+  fontAwesome: 
+    all: true
+  ShowReadingTime: true
+  LastModDisplay: true
+  logo:
+    logoText: "0xAyb3rK"
+    logoCursorColor: "#ffffff"
+  social:
+    - name: "github"
+      url: "https://github.com/0xAyb3rK" 
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/ayberk-%C3%A7ataloluk-9b05a5257/"   
+  
+  footer:
+    showVersion: true
+    socialIcons: true
+    author: true
+    rss: true
+    trademark: true
+    copyright: true
+    bottomText: [
+      "Powered by <a href=\"http://gohugo.io\">Hugo</a>", 
+      "with <a href=\"https://github.com/4s3ti/hugo-theme-hello-4s3ti\">Hello-friend-4s3ti</a>",
+    ]
+
+taxonomies:
+  tag: "tags"
+  category: "blog"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

@@ -1,0 +1,201 @@
+/* Custom CSS for Reverse Engineering Aesthetic */
+/* Keeping the base theme, only adding subtle touches */
+
+:root {
+  --rev-mono-font: 'JetBrains Mono', monospace;
+  --rev-code-bg: #111111; /* Very dark background for debugger feel */
+  --rev-code-border: #333;
+}
+
+/* ========================================= */
+/* 1. Monospace Technical Details */
+/* ========================================= */
+.post-date, 
+.post-tags, 
+.post-categories, 
+.post-meta,
+.menu__item,
+.footer {
+  font-family: var(--rev-mono-font);
+  font-size: 0.9em;
+}
+
+/* ========================================= */
+/* 2. The "Disassembler" Code Blocks */
+/* ========================================= */
+/* Override Hugo chroma background and general pre */
+pre, .chroma {
+  background-color: var(--rev-code-bg) !important;
+  border: 1px solid var(--rev-code-border);
+  border-radius: 8px;
+  font-family: var(--rev-mono-font) !important;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Inner shadow for depth */
+}
+
+/* Inline code styling */
+code {
+  font-family: var(--rev-mono-font);
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.15em 0.3em;
+  border-radius: 4px;
+  color: #a6e22e; /* Pale green reminiscent of IDA/Ghidra syntax */
+}
+pre code {
+  background-color: transparent;
+  color: inherit;
+}
+
+/* Disassembler-like colors for standard syntax (if no chroma class hits perfectly) */
+.chroma .k, .chroma .kc, .chroma .kd { color: #f92672; } /* Keywords: pink/red */
+.chroma .nc { color: #a6e22e; } /* Classes: green */
+.chroma .s, .chroma .s1, .chroma .s2 { color: #e6db74; } /* Strings: pale yellow */
+.chroma .c, .chroma .c1 { color: #75715e; font-style: italic; } /* Comments: grey */
+
+/* ========================================= */
+/* 3. Terminal Whoami Page styling */
+/* ========================================= */
+/* If body class or content is whoami, we add a terminal window effect */
+.terminal-window {
+  background-color: #1a1b26; /* TokyoNight / modern linux dark */
+  border: 1px solid #292e42;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  padding: 0;
+  margin-top: 20px;
+  overflow: hidden;
+  
+  /* Nudge terminal to the left to expose background on the right */
+  width: 95%;
+  margin-right: auto;
+  margin-left: -5%;
+}
+
+/* Override for the full-screen interactive terminal page */
+.interactive-terminal {
+  width: 95% !important;
+  margin-left: -5% !important;
+  margin-right: auto !important;
+  margin-top: 0 !important;
+  border-radius: 8px !important;
+  height: 70vh !important;
+}
+
+.terminal-header {
+  background-color: #15161e;
+  padding: 8px 15px;
+  border-bottom: 1px solid #292e42;
+  font-family: var(--rev-mono-font);
+  font-size: 0.8rem;
+  color: #7aa2f7;
+  text-align: center;
+}
+
+.terminal-content {
+  padding: 15px;
+}
+
+/* Powerlevel10k Prompt Styling (Advanced) */
+.p10k-line-1 {
+  display: flex;
+  align-items: center;
+  font-family: var(--rev-mono-font);
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+}
+.p10k-left { display: flex; align-items: stretch; }
+.p10k-right { display: flex; align-items: stretch; }
+.p10k-connector {
+  flex-grow: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0 10px;
+  height: 1px;
+}
+
+.p10k-segment { 
+  padding: 2px 8px; 
+  font-weight: bold; 
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.p10k-os { background: #d3d7cf; color: #2e3436; }
+.p10k-os-to-dir { color: #d3d7cf; background: #3465a4; }
+.p10k-dir { background: #3465a4; color: #eeeeec; }
+.p10k-dir-to-bg { color: #3465a4; background: transparent; }
+
+.p10k-bg-to-time { color: #d3d7cf; background: transparent; }
+.p10k-time { background: #d3d7cf; color: #2e3436; }
+
+.p10k-arrow { 
+  font-size: 1.1em; 
+  line-height: 1; 
+  display: flex; 
+  align-items: center; 
+}
+
+.p10k-line-2 {
+  font-family: var(--rev-mono-font);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.p10k-prompt-arrow { color: #8ae234; font-weight: bold; }
+.p10k-command { color: #eeeeec; }
+
+/* Blinking Cursor Animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.p10k-cursor { 
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: #eeeeec;
+  animation: blink 1s step-end infinite; 
+  vertical-align: middle;
+}
+
+/* Logo Cursor Blinking Effect */
+.logo__cursor {
+  animation: blink 1s step-end infinite !important;
+  color: var(--theme) !important;
+}
+
+.terminal-body {
+  font-family: var(--rev-mono-font);
+  color: #a9b1d6;
+}
+
+/* ========================================= */
+/* 4. Hex Dump Footer Accent */
+/* ========================================= */
+.hex-dump-accent {
+  font-family: var(--rev-mono-font);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.15); /* Very faint */
+  text-align: center;
+  margin-bottom: 30px; /* Changed to bottom since it's above social icons now */
+  user-select: none;
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+/* Decoding Animation class */
+.decoding {
+  font-family: var(--rev-mono-font);
+  opacity: 0.9;
+  /* Use the theme's primary color variable for a seamless, non-cringe integration */
+  color: var(--theme);
+  filter: drop-shadow(0 0 5px var(--theme));
+}
+
+/* Make sure header menu items match the theme color exactly when hovered */
+.menu__item a:hover {
+  color: var(--theme) !important;
+  text-shadow: 0 0 8px var(--theme);
+}

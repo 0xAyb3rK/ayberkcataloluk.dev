@@ -1,0 +1,6 @@
+[submodule "hugo-theme-hello-4s3ti"]
+	path = hugo-theme-hello-4s3ti
+	url = https://github.com/coolapso/hugo-theme-hello-4s3ti
+[submodule "themes/hello-4s3ti"]
+	path = themes/hello-4s3ti
+	url = https://github.com/coolapso/hugo-theme-hello-4s3ti.git

@@ -1,0 +1,46 @@
+<footer class="footer">
+    <!-- Subtle Hex Dump Accent (placed above social icons) -->
+    <div class="hex-dump-accent">
+0000000  53 6f 66 74 77 61 72 65 20 69 73 20 6c 69 6b 65  |Software is like|
+0000010  20 74 68 65 20 6d 6f 6f 6e 3b 20 69 74 20 6f 6e  | the moon; it on|
+0000020  6c 79 20 73 68 6f 77 73 20 79 6f 75 20 69 74 73  |ly shows you its|
+0000030  20 69 6c 6c 75 6d 69 6e 61 74 65 64 20 73 75 72  | illuminated sur|
+0000040  66 61 63 65 2e 20 52 65 76 65 72 73 65 20 69 74  |face. Reverse it|
+0000050  20 74 6f 20 65 78 70 6c 6f 72 65 20 74 68 65 20  | to explore the |
+0000060  64 61 72 6b 20 73 69 64 65 2e 0a 00 00 00 00 00  |dark side.......|
+    </div>
+    <div style="display:none;" id="root-access-token">Rkw0R3tUSDNfRDRSS19TMUQzXzBGX1RIM19NMDBOfQ==</div>
+
+    {{ if  (.Site.Params.footer.topText) }}
+        <div class="footer__inner">
+            {{ range .Site.Params.footer.topText }}<span>{{ . | safeHTML}}</span>{{ end }}
+        </div>
+    {{ end }}
+    {{ if .Site.Params.footer.socialIcons }}
+        <div class="footer__inner">
+            <ul class="icons">
+                {{- with .Site.Params.social }}
+                    {{ partial "social-icons.html" . }}
+                {{- end }}
+                {{ if .Site.Params.footer.rss }}
+                <li><a href="{{ "posts/index.xml" | absLangURL }}" target="_blank" title="rss" class="icon fa-solid fa-rss"></a></li>
+                {{ end }}
+            </ul>
+        </div>
+    {{ end }}
+    {{if or (.Site.Params.footer.trademark) (.Site.Params.footer.author) (.Site.Params.footer.copyright) }}
+        <div class="footer__inner">
+            {{ if .Site.Params.footer.trademark }}<span>&copy;{{ now.Format "2006" }}</span>&nbsp;{{ end }}
+            {{ if .Site.Params.footer.author }}<span><a href="{{ .Site.BaseURL }}">{{ .Site.Params.author.name }}</a></span>&nbsp;{{ end }}
+            {{ if .Site.Params.footer.copyright }}<span>{{ .Site.Copyright| safeHTML }}</span>{{ end }}
+        </div>
+    {{ end }}
+        <div class="footer__inner">
+            <div class="footer__content">
+            {{ if .Site.Params.version }}<span>{{ .Site.Params.version }}</span>{{ end }}
+            {{with .Site.Params.footer.bottomText}}
+                {{ range . }}<span>{{ . | safeHTML}}</span>{{ end }} 
+            </div>
+          {{ end }}
+        </div>
+</footer>

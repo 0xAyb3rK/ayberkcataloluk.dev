@@ -27,4 +27,4 @@ Bu arada sıkı bir **Fenerbahçe** taraftarıyım ve **satranç** oynamayı ço
   </div>
 </div>
 
-<p class="thm-badge"><a href="https://tryhackme.com/p/Ayb3rk38" target="_blank" rel="noopener"><img src="https://tryhackme-badges.s3.amazonaws.com/Ayb3rk38.png" alt="TryHackMe — Ayb3rk38" loading="lazy"></a></p>
+<p class="thm-link"><a href="https://tryhackme.com/p/Ayb3rk38" target="_blank" rel="noopener"><i class="fa-solid fa-shield-halved"></i> TryHackMe — @Ayb3rk38 →</a></p>

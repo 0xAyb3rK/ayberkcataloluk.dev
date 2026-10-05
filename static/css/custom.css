@@ -596,18 +596,31 @@ main.post:has(#interactive-terminal-container) {
 }
 .cert-verify:hover { text-decoration: underline; }
 
-/* TryHackMe profile badge (dynamic rank/points image) */
-.thm-badge {
+/* TryHackMe profile link (the auto S3 badge image shows stale rank, so we
+   link to the live profile instead of embedding wrong numbers). */
+.thm-link {
   margin: 16px 0 4px 0;
   text-align: left;
 }
-.thm-badge img {
-  max-width: 340px;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+.thm-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--rev-mono-font);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 7px 14px;
   border: 1px solid var(--rev-code-border);
-  display: inline-block;
+  border-radius: 8px;
+  background: rgba(122, 162, 247, 0.08);
+  text-shadow: none !important;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.thm-link a:hover {
+  border-color: var(--accent);
+  background: rgba(122, 162, 247, 0.14);
 }
 
 /* ========================================= */

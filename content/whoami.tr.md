@@ -26,3 +26,5 @@ Bu arada sıkı bir **Fenerbahçe** taraftarıyım ve **satranç** oynamayı ço
     <div class="cert-meta">Veriliş Haz 2025 · Kimlik <code>HV-CAPT-KTPZN6XM</code> · Yetenekler: Penetration Testing, Web Application Security</div>
   </div>
 </div>
+
+<p class="thm-badge"><a href="https://tryhackme.com/p/Ayb3rk38" target="_blank" rel="noopener"><img src="https://tryhackme-badges.s3.amazonaws.com/Ayb3rk38.png" alt="TryHackMe — Ayb3rk38" loading="lazy"></a></p>

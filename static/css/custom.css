@@ -98,8 +98,9 @@ pre code {
 }
 
 .terminal-header {
+  position: relative;
   background-color: #15161e;
-  padding: 8px 15px;
+  padding: 10px 15px;
   border-bottom: 1px solid #292e42;
   font-family: var(--rev-mono-font);
   font-size: 0.8rem;
@@ -107,9 +108,35 @@ pre code {
   text-align: center;
 }
 
+/* Classic macOS/Linux traffic-light window buttons (left of the title) */
+.terminal-header::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ff5f57; /* close (red) */
+  box-shadow:
+    18px 0 0 #febc2e,  /* minimize (yellow) */
+    36px 0 0 #28c840;  /* maximize (green) */
+}
+
 .terminal-content {
   padding: 15px;
 }
+
+/* Slim, themed scrollbar inside the terminal */
+.terminal-content::-webkit-scrollbar { width: 10px; }
+.terminal-content::-webkit-scrollbar-track { background: #15161e; }
+.terminal-content::-webkit-scrollbar-thumb {
+  background: #2b3044;
+  border: 2px solid #15161e;
+  border-radius: 6px;
+}
+.terminal-content::-webkit-scrollbar-thumb:hover { background: #3a4160; }
 
 /* Powerlevel10k Prompt Styling (Advanced) */
 .p10k-line-1 {
@@ -568,6 +595,20 @@ main.post:has(#interactive-terminal-container) {
   white-space: nowrap;
 }
 .cert-verify:hover { text-decoration: underline; }
+
+/* TryHackMe profile badge (dynamic rank/points image) */
+.thm-badge {
+  margin: 16px 0 4px 0;
+  text-align: left;
+}
+.thm-badge img {
+  max-width: 340px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--rev-code-border);
+  display: inline-block;
+}
 
 /* ========================================= */
 /* 11. Pagefind search UI (dark theme) */

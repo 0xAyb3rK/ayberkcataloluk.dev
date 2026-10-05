@@ -150,7 +150,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         switch (cmd) {
             case "help":
-                printOutput(`Available commands: ls, cat, cd, echo, whoami, su, sudo, clear, help`);
+                printOutput(`<div style="white-space:pre; font-family:var(--rev-mono-font); line-height:1.65;"><span style="color:#7aa2f7;">Available commands:</span>
+  <span style="color:#a6e22e;">ls</span> [-la]       list directory contents
+  <span style="color:#a6e22e;">cat</span> &lt;file&gt;     print a file's contents
+  <span style="color:#a6e22e;">cd</span> &lt;dir&gt;       change directory
+  <span style="color:#a6e22e;">echo</span> &lt;text&gt;    display a line of text
+  <span style="color:#a6e22e;">whoami</span>         print the current user
+  <span style="color:#a6e22e;">su</span> / <span style="color:#a6e22e;">sudo</span>      switch to another user
+  <span style="color:#a6e22e;">clear</span>          clear the terminal
+  <span style="color:#a6e22e;">help</span>           show this help</div>`);
                 break;
             case "clear":
                 outputArea.innerHTML = "";
@@ -332,5 +340,5 @@ This incident will be reported.`);
     bindInputListener();
     
     // Output initial welcome
-    printOutput("Welcome to the interactive terminal. Type 'help' for commands.");
+    printOutput(`<span style="color:#9aa2b8;">Welcome to the interactive terminal. Type <span style="color:#a6e22e;">help</span> for commands — or try <span style="color:#a6e22e;">ls -la</span>.</span>`);
 });

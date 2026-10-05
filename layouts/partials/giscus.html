@@ -18,5 +18,20 @@
     async>
   </script>
 </section>
+<script>
+  /* Keep giscus in sync with the site's light/dark choice. */
+  (function () {
+    function giscusTheme() {
+      return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+    }
+    function apply() {
+      var f = document.querySelector("iframe.giscus-frame");
+      if (f) f.contentWindow.postMessage({ giscus: { setConfig: { theme: giscusTheme() } } }, "https://giscus.app");
+    }
+    window.addEventListener("message", function (e) {
+      if (e.origin === "https://giscus.app") apply();
+    });
+  })();
+</script>
 {{ end }}
 {{ end }}

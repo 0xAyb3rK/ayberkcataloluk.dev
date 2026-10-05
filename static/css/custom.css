@@ -80,16 +80,17 @@ pre code {
   margin-top: 20px;
   overflow: hidden;
   
-  /* Nudge terminal to the left to expose background on the right */
-  width: 95%;
+  /* Centered within the reading column (no negative margin — it was clipping
+     the left edge of the terminal content). */
+  width: 100%;
+  margin-left: auto;
   margin-right: auto;
-  margin-left: -5%;
 }
 
 /* Override for the full-screen interactive terminal page */
 .interactive-terminal {
-  width: 95% !important;
-  margin-left: -5% !important;
+  width: 100% !important;
+  margin-left: auto !important;
   margin-right: auto !important;
   margin-top: 0 !important;
   border-radius: 8px !important;
@@ -420,9 +421,9 @@ main.post {
   margin-right: auto;
 }
 
-/* The interactive terminal page stays full width. */
+/* The interactive terminal page gets a wider, centered column. */
 main.post:has(#interactive-terminal-container) {
-  max-width: none;
+  max-width: 1040px;
 }
 
 /* ========================================= */
@@ -554,7 +555,7 @@ main.post:has(#interactive-terminal-container) {
   margin-top: 4px;
   text-shadow: none !important;
 }
-.cert-meta code {
+.cert-list .cert-meta code {
   background: rgba(122, 162, 247, 0.1);
   border: 1px solid rgba(122, 162, 247, 0.25);
   color: #7aa2f7;
@@ -596,45 +597,72 @@ main.post:has(#interactive-terminal-container) {
 }
 
 /* ========================================= */
-/* 13. Light mode (default stays dark; opt-in via the header toggle) */
-/* Code blocks & terminal windows intentionally remain dark in both modes. */
+/* 13. Light mode — a proper, designed light theme (default stays dark).
+   The Ada Lovelace background image is KEPT, lightened with a light scrim.
+   Code blocks and terminal windows stay dark on purpose; because the whoami
+   certifications live INSIDE the dark terminal, they also stay dark. */
 /* ========================================= */
+
+/* Keep the background image — only change the fallback color to a light tone. */
 html[data-theme="light"],
 html[data-theme="light"] body {
-  background: #eef0f3 !important;
-  background-image: none !important;
   background-color: #eef0f3 !important;
 }
 
-/* Remove the dark photo scrim in light mode */
-html[data-theme="light"] body::before { background: none; }
-
-/* Heavy text shadows were tuned for the dark photo background */
-html[data-theme="light"] h1,
-html[data-theme="light"] h2,
-html[data-theme="light"] p,
-html[data-theme="light"] li,
-html[data-theme="light"] .post-title {
-  text-shadow: none !important;
+/* Light scrim over the dark Ada image so the page reads light and dark text is
+   readable. Stronger on the left (text), lighter on the right (portrait peeks). */
+html[data-theme="light"] body::before {
+  background: linear-gradient(
+    90deg,
+    rgba(240, 242, 246, 0.94) 0%,
+    rgba(240, 242, 246, 0.87) 45%,
+    rgba(240, 242, 246, 0.62) 100%
+  );
 }
 
-/* Page-level muted text that was tuned for dark */
-html[data-theme="light"] .section-intro { color: #4b5563; }
-html[data-theme="light"] .hex-dump-accent { color: rgba(0, 0, 0, 0.18); }
+/* Drop the heavy text shadows that were tuned for the dark photo background */
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] p,
+html[data-theme="light"] li,
+html[data-theme="light"] .post-title { text-shadow: none !important; }
 
-/* Inline code stays legible on a light page */
+/* Muted page text → darken for light */
+html[data-theme="light"] .section-intro { color: #4b5563; }
+html[data-theme="light"] .hex-dump-accent { color: rgba(0, 0, 0, 0.20); }
+
+/* Inline code on light surfaces (cert chips keep their own blue style below) */
 html[data-theme="light"] code {
   background: rgba(0, 0, 0, 0.06);
   color: #1f7a33;
 }
 html[data-theme="light"] pre code { background: transparent; color: inherit; }
 
-/* Dark elevated cards on the light page read as intentional panels */
-html[data-theme="light"] .project-card,
-html[data-theme="light"] .cert-item,
-html[data-theme="light"] #toc {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+/* Body links */
+html[data-theme="light"] .post-content a { color: #2d5bd0; }
+
+/* --- Light cards: projects + ToC sit on the light page, so lighten them.
+       (Cert cards are inside the dark terminal and are left untouched.) --- */
+html[data-theme="light"] .project-card {
+  background: rgba(255, 255, 255, 0.90);
+  border-color: #d7dbe2;
+  box-shadow: 0 8px 22px rgba(20, 30, 60, 0.10);
+}
+html[data-theme="light"] .project-card__title { color: #1a1b26; }
+html[data-theme="light"] .project-card__desc { color: #3a3f4b; }
+html[data-theme="light"] .project-card__lang { color: #2f8a1e; }
+html[data-theme="light"] .project-card__lang.lang-report { color: #c01030; }
+html[data-theme="light"] .project-card__links a {
+  color: #1a1b26;
+  background: rgba(0, 0, 0, 0.03);
+  border-color: #d7dbe2;
 }
 
-/* Links in body text */
-html[data-theme="light"] .post-content a { color: #2d5bd0; }
+html[data-theme="light"] #toc {
+  background: rgba(255, 255, 255, 0.90);
+  border-color: #d7dbe2;
+  box-shadow: 0 8px 22px rgba(20, 30, 60, 0.10);
+}
+html[data-theme="light"] #toc a { color: #3a3f4b; }
+html[data-theme="light"] #toc a:hover { color: var(--accent); }

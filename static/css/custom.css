@@ -368,3 +368,84 @@ pre code {
 @media (max-width: 640px) {
   .projects-grid { grid-template-columns: 1fr; }
 }
+
+/* ========================================= */
+/* 6. Readability — scrim overlay + reading column */
+/* ========================================= */
+
+/* Semi-transparent dark scrim over the background image so text stays
+   readable everywhere. Slightly stronger on the right, where the portrait
+   is brightest, and kept lighter in the middle so the image still shows. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(13, 17, 23, 0.58) 0%,
+    rgba(13, 17, 23, 0.40) 45%,
+    rgba(13, 17, 23, 0.74) 100%
+  );
+}
+
+/* Keep all page content above the scrim */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Comfortable reading column so text never runs under the portrait.
+   Homepage + list pages (posts/projects). */
+main[aria-role="main"],
+main.posts {
+  max-width: 940px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Single pages (blog posts, whoami) read as a tighter column. */
+main.post {
+  max-width: 820px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* The interactive terminal page stays full width. */
+main.post:has(#interactive-terminal-container) {
+  max-width: none;
+}
+
+/* ========================================= */
+/* 7. Professional tag chips (consistent with project cards) */
+/* ========================================= */
+.post-tags a,
+.tag a {
+  font-family: var(--rev-mono-font);
+  font-size: 0.72rem;
+  color: #7aa2f7;
+  background: rgba(122, 162, 247, 0.1);
+  border: 1px solid rgba(122, 162, 247, 0.28);
+  padding: 2px 9px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 3px 4px 3px 0;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  text-shadow: none !important;
+}
+
+.post-tags a:hover,
+.tag a:hover {
+  border-color: var(--theme);
+  color: var(--theme);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* The tag partial wraps each link in <span class="tag"> — drop its default spacing */
+.tag {
+  margin: 0 !important;
+}

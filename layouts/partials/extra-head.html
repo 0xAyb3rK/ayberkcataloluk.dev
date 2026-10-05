@@ -1,8 +1,30 @@
+<!-- Default to DARK unless the visitor has explicitly chosen a theme.
+     (The theme's own JS would otherwise follow the OS preference.) Runs early
+     to set data-theme before paint and avoid a flash. -->
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t !== "light" && t !== "dark") { t = "dark"; localStorage.setItem("theme", "dark"); }
+      document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+
 <!-- JetBrains Mono Font for Reverse Engineering aesthetic -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+<!-- Open Graph tags (theme only emits these when a "series" taxonomy exists) -->
+{{ template "_internal/opengraph.html" . }}
+
 <!-- Custom JS for dynamic touches -->
 <script src="/js/custom.js" defer></script>
 <script src="/js/terminal.js" defer></script>
+<script src="/js/copy-code.js" defer></script>
+
+<!-- Privacy-friendly analytics (GoatCounter). Set params.goatcounter to your code to enable. -->
+{{ with .Site.Params.goatcounter }}
+<script data-goatcounter="https://{{ . }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+{{ end }}

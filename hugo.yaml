@@ -14,8 +14,12 @@ languages:
       main:
         - identifier: "posts"
           name: "Posts"
-          url: "/posts" 
+          url: "/posts"
           weight: 1
+        - identifier: "search"
+          name: "Search"
+          url: "/search"
+          weight: 2
         - identifier: "projects"
           name: "Projects"
           url: "/projects"
@@ -35,8 +39,12 @@ languages:
       main:
         - identifier: "posts"
           name: "Posts"
-          url: "/posts" 
+          url: "/posts"
           weight: 1
+        - identifier: "search"
+          name: "Ara"
+          url: "/search"
+          weight: 2
         - identifier: "projects"
           name: "Projects"
           url: "/projects"
@@ -53,10 +61,24 @@ languages:
 params:
   customCSS: ["/css/custom.css"]
   version: "dev"
-  author: 
+  author:
     name: "0xAyb3rK"
+  themeColor: "#0d1117"
+  # Default social-preview (Open Graph) image used when a page has no `images`.
+  images:
+    - "images/ada-bg.jpg"
+  # Privacy-friendly analytics. Set to your GoatCounter code (e.g. "0xayb3rk")
+  # after signing up at https://www.goatcounter.com — leave empty to disable.
+  goatcounter: "ayb3rk"
+  # GitHub-based comments (giscus). Comments stay OFF until categoryId is set
+  # (pick a Discussion category on https://giscus.app to get it).
+  giscus:
+    repo: "0xAyb3rK/ayberkcataloluk.dev"
+    repoId: "R_kgDOSRc4tA"
+    category: "Announcements"
+    categoryId: ""
   defaultTheme: "dark"
-  EnableThemeToggle: false
+  EnableThemeToggle: true
   EnableSharingButtons: true
   EnableGlobalLanguageMenu: true
   backgroundEffects: true

@@ -15,6 +15,12 @@ h1, h2, p, li, .post-title {
   --rev-mono-font: 'JetBrains Mono', monospace;
   --rev-code-bg: #111111; /* Very dark background for debugger feel */
   --rev-code-border: #333;
+  /* Accent color. The theme references var(--theme) but never defined it,
+     so every accent silently fell back to the grey text color. Define it
+     once here (TokyoNight blue, matching the terminal header) to light up
+     menu hovers, the logo cursor, cards, tags, ToC and certs consistently. */
+  --theme: #7aa2f7;
+  --accent: #7aa2f7;
 }
 
 /* ========================================= */
@@ -449,3 +455,186 @@ main.post:has(#interactive-terminal-container) {
 .tag {
   margin: 0 !important;
 }
+
+/* ========================================= */
+/* 8. Table of Contents (long write-ups) */
+/* ========================================= */
+#toc {
+  background: rgba(17, 17, 17, 0.82);
+  border: 1px solid var(--rev-code-border);
+  border-left: 3px solid var(--theme);
+  border-radius: 8px;
+  padding: 14px 20px;
+  margin: 20px 0;
+  font-family: var(--rev-mono-font);
+  backdrop-filter: blur(3px);
+  text-align: left;
+}
+#toc .toc-title {
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--theme);
+  margin-bottom: 8px;
+}
+#toc ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+#toc ul ul { padding-left: 16px; }
+#toc li { margin: 3px 0; text-shadow: none !important; }
+#toc a {
+  color: #a9b1d6;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+#toc a:hover { color: var(--theme); }
+
+/* ========================================= */
+/* 9. Code block "copy" button */
+/* ========================================= */
+.has-copy-btn { position: relative; }
+.copy-code-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  font-family: var(--rev-mono-font);
+  font-size: 0.8rem;
+  line-height: 1;
+  color: #a9b1d6;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--rev-code-border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.has-copy-btn:hover .copy-code-btn,
+.copy-code-btn:focus { opacity: 1; }
+.copy-code-btn:hover {
+  color: var(--theme);
+  border-color: var(--theme);
+}
+.copy-code-btn.copied { color: #a6e22e; border-color: #a6e22e; opacity: 1; }
+@media (hover: none) {
+  .copy-code-btn { opacity: 1; } /* always visible on touch devices */
+}
+
+/* ========================================= */
+/* 10. Certifications list (whoami) */
+/* ========================================= */
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 10px 0 6px 0;
+  text-align: left;
+}
+.cert-item {
+  border: 1px solid var(--rev-code-border);
+  border-left: 3px solid var(--theme);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px 16px;
+}
+.cert-main {
+  font-family: var(--rev-mono-font);
+  font-size: 0.98rem;
+}
+.cert-name { color: #eeeeec; font-weight: 700; }
+.cert-issuer { color: var(--theme); }
+.cert-meta {
+  font-family: var(--rev-mono-font);
+  font-size: 0.78rem;
+  color: #9aa2b8;
+  margin-top: 4px;
+  text-shadow: none !important;
+}
+.cert-meta code {
+  background: rgba(122, 162, 247, 0.1);
+  border: 1px solid rgba(122, 162, 247, 0.25);
+  color: #7aa2f7;
+  padding: 0 5px;
+}
+.cert-verify {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.cert-verify:hover { text-decoration: underline; }
+
+/* ========================================= */
+/* 11. Pagefind search UI (dark theme) */
+/* ========================================= */
+.pagefind-search {
+  text-align: left;
+  margin-top: 20px;
+  --pagefind-ui-scale: 0.9;
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-text: #c3c8d4;
+  --pagefind-ui-background: rgba(17, 17, 17, 0.82);
+  --pagefind-ui-border: var(--rev-code-border);
+  --pagefind-ui-tag: #1a1b26;
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-font: var(--rev-mono-font);
+}
+.pagefind-ui__result { text-shadow: none !important; }
+.pagefind-ui__result-link { color: #eeeeec !important; }
+
+/* ========================================= */
+/* 12. giscus comments spacing */
+/* ========================================= */
+.giscus-wrapper {
+  margin-top: 32px;
+  text-align: left;
+}
+
+/* ========================================= */
+/* 13. Light mode (default stays dark; opt-in via the header toggle) */
+/* Code blocks & terminal windows intentionally remain dark in both modes. */
+/* ========================================= */
+html[data-theme="light"],
+html[data-theme="light"] body {
+  background: #eef0f3 !important;
+  background-image: none !important;
+  background-color: #eef0f3 !important;
+}
+
+/* Remove the dark photo scrim in light mode */
+html[data-theme="light"] body::before { background: none; }
+
+/* Heavy text shadows were tuned for the dark photo background */
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] p,
+html[data-theme="light"] li,
+html[data-theme="light"] .post-title {
+  text-shadow: none !important;
+}
+
+/* Page-level muted text that was tuned for dark */
+html[data-theme="light"] .section-intro { color: #4b5563; }
+html[data-theme="light"] .hex-dump-accent { color: rgba(0, 0, 0, 0.18); }
+
+/* Inline code stays legible on a light page */
+html[data-theme="light"] code {
+  background: rgba(0, 0, 0, 0.06);
+  color: #1f7a33;
+}
+html[data-theme="light"] pre code { background: transparent; color: inherit; }
+
+/* Dark elevated cards on the light page read as intentional panels */
+html[data-theme="light"] .project-card,
+html[data-theme="light"] .cert-item,
+html[data-theme="light"] #toc {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Links in body text */
+html[data-theme="light"] .post-content a { color: #2d5bd0; }

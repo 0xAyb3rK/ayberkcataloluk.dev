@@ -5,6 +5,9 @@ draft: false
 description: "BlossCraft'ın teknik incelemesi — NSIS kurulumu, şifreli bir app.asar payload'u ve Python ikinci aşamasının arkasına gizlenmiş, sahte bir oyun launcher'ı kılığındaki Electron/Node.js infostealer'ı."
 Cover: "https://raw.githubusercontent.com/0xAyb3rK/BlossCraft-Electron-Malware-Analysis/main/images/banner.png"
 CoverCaption: "BlossCraft — Electron tabanlı stealer teknik analizi"
+images:
+  - "https://raw.githubusercontent.com/0xAyb3rK/BlossCraft-Electron-Malware-Analysis/main/images/banner.png"
+toc: true
 tags:
   - malware-analizi
   - tersine-muhendislik

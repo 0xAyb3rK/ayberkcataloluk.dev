@@ -5,6 +5,9 @@ draft: false
 description: "A technical breakdown of BlossCraft — a fake game launcher that hides an Electron/Node.js infostealer behind an NSIS installer, an encrypted app.asar payload, and a Python second stage."
 Cover: "https://raw.githubusercontent.com/0xAyb3rK/BlossCraft-Electron-Malware-Analysis/main/images/banner.png"
 CoverCaption: "BlossCraft — Electron-based stealer technical analysis"
+images:
+  - "https://raw.githubusercontent.com/0xAyb3rK/BlossCraft-Electron-Malware-Analysis/main/images/banner.png"
+toc: true
 tags:
   - malware-analysis
   - reverse-engineering
